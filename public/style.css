@@ -1,0 +1,248 @@
+
+
+
+/*!
+ *   Ideahunter
+ *   Author: Md. Shahinur Alam
+ *   Website: https://www.linkedin.com/in/md-shahinur-alam-581bb5b2/
+ */
+/*
+ * Core: General Layout Style
+ * -------------------------
+ */
+
+
+
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.theme-color-solid{ color: #3c8dbc; }
+.theme-color-light{}
+.theme-color-solid-inverse{color: white;}
+
+.theme-bg-solid{}
+.theme-bg-light{}
+
+
+.theme-color2-solid{}
+.theme-color2-light{}
+
+.theme-bg2-solid{}
+.theme-bg2-light{}
+
+body{color: #222}
+
+.idea_table tbody tr {
+  background: #f9f9f9;  
+}
+
+.visited_idea{
+  background: #f2f3f3;
+}
+
+.box.idea-box{
+  padding-bottom: 10px;
+  margin-bottom: 0;
+  border-bottom: 1px solid #64646438;
+  cursor: pointer;
+}
+p{
+  text-align: left;
+}
+.pager{
+  margin: 0;
+}
+
+form textarea{
+  width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;
+}
+
+.triger-checkbox{
+  float: left;  margin: 5px 5px 0 0 !important;
+}
+
+
+.triger-checkbox+label{
+  cursor: pointer;
+}
+.triger-checkbox:hover, triger-checkbox+label:hover{
+
+  text-decoration: underline;
+}
+
+.idea-list-item:hover {
+  /* background: #f5f5f5; */
+  box-shadow: 0px 0px 25px #1818182e;
+  border-bottom: 1px solid #64646461;
+
+}
+
+.idea-status-box{
+  margin: 0
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li.select2-selection__choice {
+    background: #d7dcdf;
+    color: #2c3e50;
+    padding: 0px 2px;
+    font-size: 12px;
+}
+
+
+
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+}
+
+.alert.notification_item{
+  opacity: 0;
+  -webkit-animation: custom_notification 5s ; /* Safari 4.0 - 8.0 */
+  animation: custom_notification 5s ;
+}
+
+
+@-webkit-keyframes custom_notification {
+  0%   {display: inherit;}
+  1%  {opacity: 1;}
+  90%  {opacity: 1;}
+  98% {opacity: 0;}
+  100%   {display: inherit;}
+}
+
+@keyframes custom_notification {
+  0%   {display: inherit;}
+  1%  {opacity: 1;}
+  90%  {opacity: 1;}
+  98% {opacity: 0;}
+  100% {display: inherit;}
+}
+
+
+
+.breadcrumb{
+  display: none;
+}
+
+
+.bootstrap-wysihtml5-insert-image-modal{
+  display: none;
+}
+
+.topic-description-block img{
+  max-width: 100%;
+}
+
+.topic-description-block{
+  transition: all 2s !important;    padding-bottom: 20px;
+}
+
+
+.topic-description-block.collapse{
+  max-height: 100px;
+  min-height: auto;
+  display: block !important;
+  height: auto !important;
+  overflow: hidden;
+}
+
+.topic-description-block.collapse.in{
+  max-height: 100%;
+  min-height: auto;
+  height: auto  ;
+}
+
+
+.showmore-link{
+  position: absolute;
+  bottom: 0;
+  background: #f3f3f300;
+  width: 95%;
+  text-align: center;
+  box-shadow: inset 0px -35px 30px -15px #e5e5e5;
+      line-height: 26px;
+}
+
