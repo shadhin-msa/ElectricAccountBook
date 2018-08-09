@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('invoices')->delete();
+        DB::table('payments')->delete();
         DB::table('stocks')->delete();
         DB::table('area_managers')->delete();
         DB::table('customers')->delete();
@@ -30,5 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CustomersTableSeeder::class);
         $this->call(AreaManagersTableSeeder::class);
         $this->call(StocksTableSeeder::class);
+        $this->call(PaymentsTableSeeder::class);
+        $this->call(InvoicesTableSeeder::class);
     }
 }

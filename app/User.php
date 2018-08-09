@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function stocks(){
         return $this->hasMany('App\Models\stock','user_id');
     }
+
+    public function payments(){
+        return $this->hasMany('App\Models\Payment','user_id');
+    }
 }

@@ -1,0 +1,84 @@
+
+
+
+body {
+  font-family: 'Source Sans Pro';
+  font-size: 16px;
+  font-weight: 400;
+  background-color: #d7d7d7;
+}
+
+#invoice-content * {
+  box-sizing:border-box;
+}
+
+.container {
+  width: 900px;
+  margin: 40px auto;
+  background-color: #fff;
+  padding: 30px;
+  overflow: hidden;
+  box-shadow:0 2px 2px rgba(0,0,0,.2);
+  border-radius:6px;
+}
+
+input[type=text], input[type=number], input[type=date], select {
+  font-family: 'Source Sans Pro', Sans-serif;
+  font-size: 1em;
+  border: none;
+  border-bottom: 1px solid #d7d7d7;
+  padding: 4px;
+  outline: none;
+}
+.items-table {
+  width: 100%;
+}
+.items-table th {
+  text-align: left;
+  font-weight: 300;
+  padding: 10px 5px 3px;
+  white-space: nowrap;
+}
+.items-table input[type=text], .items-table input[type=number], .items-table input[type=date], .items-table select {
+  width: 100%;
+}
+#items td {
+  padding: 5px;
+  background: #eee;
+  border-bottom: 1px solid #fff;
+}
+#items .desc {
+  min-width: 200px;
+}
+#items .total-price {
+  text-align: right;
+  font-weight: 600;
+}
+.invoice-totals {
+  width: 50%;
+  float: right;
+}
+.invoice-totals th {
+  font-weight: 300;
+}
+.invoice-totals th, .invoice-totals td {
+  text-align: right;
+  padding: 5px;
+  border-bottom: 1px solid #d7d7d7;
+}
+.invoice-totals .tax-container td {
+  border-bottom: none;
+  padding: 0;
+}
+#taxs {
+  width: 100%;
+}
+#taxs thead th {
+  font-weight: 300;
+  background-color: #eee;
+}
+#taxs th, #taxs td {
+  text-align: right;
+  padding: 5px;
+  border-bottom: 1px solid #d7d7d7;
+}

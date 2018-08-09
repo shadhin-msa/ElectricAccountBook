@@ -23,7 +23,7 @@ class ProductsTableSeeder extends Seeder
 				'description' => "Lorem ipsum is placeholder text commonly used in the graphic, print, 
 										and publishing industries for previewing layouts and visual mockups.", 
 				'stock' => 0,
-				'price' => 100.4,
+				'price' => 112.4,
  				'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
  				'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
 			],[
@@ -34,7 +34,7 @@ class ProductsTableSeeder extends Seeder
 				'description' => "Lorem ipsum is placeholder text commonly used in the graphic, print, 
 										and publishing industries for previewing layouts and visual mockups.", 
 				'stock' => 0,
-				'price' => 100.4 ,
+				'price' => 10.24 ,
  				'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
  				'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
 			],[
@@ -45,7 +45,7 @@ class ProductsTableSeeder extends Seeder
 				'description' => "Lorem ipsum is placeholder text commonly used in the graphic, print, 
 										and publishing industries for previewing layouts and visual mockups.", 
 				'stock' => 0,
-				'price' => 100.4 ,
+				'price' => 34.00 ,
  				'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
  				'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
 			],[
@@ -56,7 +56,7 @@ class ProductsTableSeeder extends Seeder
 				'description' => "Lorem ipsum is placeholder text commonly used in the graphic, print, 
 										and publishing industries for previewing layouts and visual mockups.", 
 				'stock' => 0,
-				'price' => 100.4 ,
+				'price' => 67.03 ,
  				'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
  				'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
 			]

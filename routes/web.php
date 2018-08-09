@@ -29,5 +29,7 @@ Route::group( ['middleware' => [ 'auth'] ], function () {
 	Route::resource('customer','CustomerController');
 	Route::resource('area-manager','AreaManagerController');
 	Route::resource('stock','StockController');
+	Route::resource('payment','PaymentController');
+	Route::resource('invoice','InvoiceController');
 
 });

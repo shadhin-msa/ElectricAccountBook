@@ -38,4 +38,21 @@ class Customer extends Model
 	public function area(){
 		return $this->belongsTo('App\Models\Area','areaId');
 	}
+
+
+	public function invoices(){
+		return $this->hasMany('App\Models\Invoice');
+	}
+
+	public function payments(){
+		return $this->hasMany('App\Models\Payment');
+	}
+
+   public function getPreviousDueAttribute(){
+        $all_bills = $this->invoices()->sum('total_bill');
+        $all_payments = $this->payments()->sum('amount');
+
+        return $all_bills - $all_payments;
+   }
+
 }

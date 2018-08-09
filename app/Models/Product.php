@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['name','categoryId','perunit','price','description'];
+	// public function __construct(array $attributes = array()){
+
+	//     parent::__construct($attributes);
+	//     	dd($attributes);
+	// }
+   protected $fillable = ['name','categoryId','perunit','price','description'];
 
     //get validation rules
 	public static function rules($method)
@@ -39,11 +44,22 @@ class Product extends Model
 	public function category(){
 		return $this->belongsTo('App\Models\Category','categoryId');
 	}
+	public function invoices(){
+		return $this->belongsToMany('App\Models\Invoice','invoice_products')->withPivot('price','quantity','total');
+	}
 
 	public function calculateStock(){
+		// $a =[];
+		// foreach($this->invoices as $invoice)
+		// 	{ 	
+		// 		$a[] = $invoice->pivot->quantity;
+		// 	}
+		
+		$sell = $this->invoices()->sum('quantity');
 		$total_stock = Stock::where('product_id', $this->id)->sum('quantity');
-		$this->stock = $total_stock;
+		$current_stock = $total_stock - $sell;
+		$this->stock = $current_stock;
 		$this->save();
-		return true;
+		return $current_stock;
 	}
 }
