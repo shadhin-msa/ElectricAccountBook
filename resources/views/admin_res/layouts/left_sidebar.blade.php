@@ -38,19 +38,18 @@
     <!-- /.search form --> --}}
 
     <!-- Sidebar Menu -->
-    <ul class="sidebar-menu" data-widget="tree">
+    <ul class="sidebar-menu" id="sidebar-menu" data-widget="tree">
       {{-- <li class="header">HEADER</li> --}}
       <!-- Optionally, you can add icons to the links -->
 
       
-      
-      <li class=" menu-open{{ in_array(\Request::route()->getName(), ['idea.index','tag.index','category.index', 'idea.closed', 'idea.final-closed'])? 'active':'' }}" >
+      <li class=" treeview" >
         <a href="#"><i class="fa fa-lightbulb-o"></i> <span>Product</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
-        <ul class="treeview-menu" style="display: block;">
+        <ul class="treeview-menu" >
           <li class="" ><a href="{{route('product.index')}}"><i class="fa fa-circle-o"></i>All products</a></li>
           <li class="" ><a  href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i>Category </a></li>
         </ul>
@@ -58,26 +57,28 @@
       <li class="" ><a  href="{{ route('area.index') }}"><i class="fa fa-circle-o"></i>Area </a></li>
       <li class="" ><a  href="{{ route('customer.index') }}"><i class="fa fa-circle-o"></i>Customers </a></li>
       <li class="" ><a  href="{{ route('delar.index') }}"><i class="fa fa-circle-o"></i>Delars </a></li>
+      
+      <li class="" ><a  href="{{ route('payment.index') }}"><i class="fa fa-circle-o"></i>Payment </a></li>
+      <li class="" ><a  href="{{ route('stock.index') }}"><i class="fa fa-circle-o"></i>Stock </a></li>
+      <li class="treeview" >
+        <a href="#"><i class="fa fa-lightbulb-o"></i> <span>Invoice</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu" >
+          <li class="" ><a href="{{route('invoice.create')}}"><i class="fa fa-circle-o"></i>Create</a></li>
+          <li class="" ><a  href="{{ route('invoice.index') }}"><i class="fa fa-circle-o"></i>History </a></li>
+        </ul>
+      </li>
 
-
-      {{-- new simple coding for making active class
-
-        // === following js will activate the menu in left side bar based on url ====
-          $(document).ready(function() {
-              $("#sidebar-menu a").each(function() {
-                  if (this.href == window.location.href) {
-                      $(this).addClass("active");
-                      $(this).parent().addClass("active"); // add active to li of the current link
-                      $(this).parent().parent().prev().addClass("active"); // add active class to an anchor
-                      $(this).parent().parent().prev().click(); // click the item to make it drop
-                  }
-              });
-          });
-        --}}
 
      
 
   </ul>
+
+     
+       
   <!-- /.sidebar-menu -->
 </section>
   <!-- /.sidebar 

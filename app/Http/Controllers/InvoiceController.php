@@ -16,6 +16,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
+        $invoices = Invoice::all();
+        return view('admin_res.invoice.index', compact('invoices'));
     }
 
     /**
@@ -105,7 +107,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        //
+        return view('admin_res.invoice.show',compact('invoice'));
     }
 
     /**
@@ -140,5 +142,10 @@ class InvoiceController extends Controller
     public function destroy(Invoice $invoice)
     {
         //
+    }
+
+    public function chalan(Invoice $invoice)
+    {
+        return view('admin_res.invoice.chalan',compact('invoice'));
     }
 }

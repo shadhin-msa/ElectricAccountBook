@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('invoice_products')->delete();
         DB::table('invoices')->delete();
         DB::table('payments')->delete();
         DB::table('stocks')->delete();

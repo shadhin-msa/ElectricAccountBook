@@ -30,6 +30,8 @@ Route::group( ['middleware' => [ 'auth'] ], function () {
 	Route::resource('area-manager','AreaManagerController');
 	Route::resource('stock','StockController');
 	Route::resource('payment','PaymentController');
+
+	Route::get('/invoice/{invoice}/chalan', 'InvoiceController@chalan')->name('invoice.chalan');
 	Route::resource('invoice','InvoiceController');
 
 });

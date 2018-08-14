@@ -42,6 +42,12 @@ class Invoice extends Model
     	return $this->belongsToMany('App\Models\Product','invoice_products')->withPivot('price','quantity','total');
     }
 
+    public function customer()
+    {
+    	return $this->belongsTo('App\Models\Customer');
+    }
+
+
     public function payment()
     {
     	return $this->belongsTo('App\Models\Payment');

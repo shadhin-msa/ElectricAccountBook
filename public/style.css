@@ -11,7 +11,9 @@
  * -------------------------
  */
 
-
+td, th{
+  padding: 3px;
+}
 
 
 
@@ -245,4 +247,29 @@ form textarea{
   box-shadow: inset 0px -35px 30px -15px #e5e5e5;
       line-height: 26px;
 }
+
+
+
+
+/*.............. invoice Show ...............*/
+
+.class_image_header{
+  width: 100%;
+}
+
+#invoice_details table , .print_content table, #chalan_details table{
+  margin-bottom:10px;
+}
+
+
+#invoice_show .only-print, #invoice_show #chalan_details{
+  display: none;
+}
+
+
+#invoice_chalan .only-print, #invoice_chalan #invoice_details{
+  display: none;
+}
+
+
 
