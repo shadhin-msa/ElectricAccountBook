@@ -62,7 +62,7 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>Invoice
+		<h1>Replace
 			<small><!-- sub title --></small>
 		</h1>
 		<ol class="breadcrumb">
@@ -73,7 +73,7 @@
 	</section>
 
 	<!-- Main content -->
-	<section class="content" id="invoice_show">
+	<section class="content" id="replace_show">
 		<div class="row">
 			<div class="col-md-12" >
 
@@ -82,13 +82,13 @@
 					<div class="box-header with-border">
 						
 						<h3 class="box-title">
-						Invoice Details</h3>
+						Replace Details</h3>
 					</div>
 				<div class="box-body">
 						<!-- general form elements -->
 						
 						<div class="row-fluid sortable"><!--/span-->
-							<div id="invoice_details">
+							<div id="replace_details">
 								<div class="box-content"><!--/row -->
 									<div class="row-fluid">
 										<div class="col-md-12 ">
@@ -97,9 +97,9 @@
 											</span>
 											<table width="100%" border="0">
 												<tr>
-													<td width="33%" align="left">Invoice No : {{ $invoice->id}}</td>
-													<td width="34%" align="center"><h2>Invoice</h2></td>
-													<td width="33%" align="right">Date : {{$invoice->created_at}} </td>
+													<td width="33%" align="left">Replace No : {{ $replace->id}}</td>
+													<td width="34%" align="center"><h2>Replace</h2></td>
+													<td width="33%" align="right">Date : {{$replace->created_at}} </td>
 												</tr>
 											</table>
 										</div>
@@ -107,11 +107,11 @@
 											<table width="100%"  cellpadding="2" style="border: 1px solid">
 												<tr>
 													<td width="30%"><span class="control-label">Company :</span></td>
-													<td width="70%">{{$invoice->customer->name}} </td>
+													<td width="70%">{{$replace->customer->name}} </td>
 												</tr>
 												<tr>
 													<td>Address :</td>
-													<td>{{$invoice->customer->address}} </td>
+													<td>{{$replace->customer->address}} </td>
 												</tr>
 												<tr>
 													<td>Propiter :</td>
@@ -119,7 +119,7 @@
 												</tr>
 												<tr>
 													<td>Mobile :</td>
-													<td>{{$invoice->customer->phone}} </td>
+													<td>{{$replace->customer->phone}} </td>
 												</tr>
 											</table>
 										</div>
@@ -128,7 +128,7 @@
 											<table width="100%"  cellpadding="2" style="border: 1px solid">
 												<tr>
 													<td width="30%">Created at :</td>
-													<td width="70%"> {{ $invoice->created_at}} </td>
+													<td width="70%"> {{ $replace->created_at}} </td>
 												</tr>
 												<tr>
 													<td>Manufacturer:</td>
@@ -159,7 +159,7 @@
 												</thead>   
 												<tbody>
 
-													@foreach ($invoice->products as $product)
+													@foreach ($replace->products as $product)
 													{{-- expr --}}
 
 
@@ -179,32 +179,32 @@
 												<tbody>
 													<tr>
 														<td width="44%">Subtotal</td>
-														<td width="41%" class="td_currency">{{ $invoice->subtotal}} </td>
+														<td width="41%" class="td_currency">{{ $replace->subtotal}} </td>
 													</tr>
 													<tr>
 														<td>Commission () %</td>
-														<td class="td_currency">{{$invoice->commission}} </td>
+														<td class="td_currency">{{$replace->commission}} </td>
 													</tr>
 													<tr>
 														<td><span class="control-label">Total Bill</span></td>
-														<td class="td_currency">{{$invoice->total_bill}} </td>
+														<td class="td_currency">{{$replace->total_bill}} </td>
 													</tr>
 													<tr>
 														<td><span class="control-label">Previous Due</span></td>
-														<td class="td_currency">{{$invoice->previous_due}} </td>
+														<td class="td_currency">{{$replace->previous_due}} </td>
 													</tr>
 
 													<tr>
 														<td><span class="control-label">Grand Total</span></td>
-														<td class="td_currency">{{ $invoice->grand_total}} </td>
+														<td class="td_currency">{{ $replace->grand_total}} </td>
 													</tr>
 													<tr>
-														<td><span class="control-label">Cash Deposit</span></td>
-														<td class="td_currency">{{ $invoice->payment->amount}} </td>
+														<td><span class="control-label">Cash Returned</span></td>
+														<td class="td_currency">{{ -1*$replace->payment->amount}} </td>
 													</tr>
 													<tr>
 														<td>Due: </td>
-														<td class="td_currency">{{ $invoice->current_due}}</td>
+														<td class="td_currency">{{ $replace->current_due}}</td>
 													</tr>
 												</tbody>
 											</table>
@@ -214,7 +214,7 @@
 
 
 									<span class="only-print">
-										<div id="invoice_details_footer ">
+										<div id="replace_details_footer ">
 											<table width="95%" border="0">
 												<tr>
 													<td width="20%" style="border-bottom: 1px solid; text-align: center;" align="left"> Customer Sign 
@@ -234,7 +234,7 @@
 							</div> 
 						</div>
 
-					<div class="row-fluid sortable"  id="chalan_details">
+					{{-- <div class="row-fluid sortable"  id="chalan_details">
 						
 						<div class="box-content"><!--/row -->
 
@@ -245,9 +245,9 @@
 									</span>
 									<table width="100%" border="0">
 										<tr>
-											<td width="33%" align="left">Chalan No: {{$invoice->id}}</td>
+											<td width="33%" align="left">Chalan No: {{$replace->id}}</td>
 											<td width="34%" align="center"><h2>Chalan</h2></td>
-											<td width="33%" align="right">Date:{{$invoice->created_at}} </td>
+											<td width="33%" align="right">Date:{{$replace->created_at}} </td>
 										</tr>
 									</table>
 								</div>
@@ -257,11 +257,11 @@
 										<tbody>
 											<tr>
 												<td width="9%">Customer:</td>
-												<td width="40%">{{$invoice->customer->name}} </td>
+												<td width="40%">{{$replace->customer->name}} </td>
 											</tr>
 											<tr>
 												<td>Address</td>
-												<td>{{$invoice->customer->address}} </td>
+												<td>{{$replace->customer->address}} </td>
 											</tr>
 											<tr>
 												<td>Propiter</td>
@@ -269,7 +269,7 @@
 											</tr>
 											<tr>
 												<td>Mobile:</td>
-												<td>{{$invoice->customer->phone}} </td>
+												<td>{{$replace->customer->phone}} </td>
 											</tr>
 										</tbody>
 									</table>
@@ -280,8 +280,8 @@
 									<table width="100%"  cellpadding="3" cellspacing="2" style="border: 1px solid">
 										<tbody>
 											<tr>
-												<td width="23%">Invoice No:</td>
-												<td width="25%">{{$invoice->id}} </td>
+												<td width="23%">Replace No:</td>
+												<td width="25%">{{$replace->id}} </td>
 											</tr>
 											<tr>
 												<td>Delar No:</td>
@@ -313,7 +313,7 @@
 										</thead>   
 										<tbody>
 
-											@foreach ($invoice->products as $product)
+											@foreach ($replace->products as $product)
 
 											<tr>
 												<td class="center">{{$product->id}} </td>
@@ -343,11 +343,11 @@
 							</div> 
 						</div>
 
-					</div>
+					</div> --}}
 					<div class="row-fluid sortable">
 						<div class=" col-md-12">
-							<input type="button" class="btn btn-primary" onclick="printContent('invoice_details')" value="Print Cash Memo" />
-							<input type="button" class="btn btn-default" onclick="printContent('chalan_details')" value="Print Chalan" />
+							<input type="button" class="btn btn-primary" onclick="printContent('replace_details')" value="Print Cash Memo" />
+							{{-- <input type="button" class="btn btn-default" onclick="printContent('chalan_details')" value="Print Chalan" /> --}}
 						</div>
 					</div>
 				</div>

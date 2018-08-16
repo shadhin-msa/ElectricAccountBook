@@ -71,6 +71,17 @@
           <li class="" ><a  href="{{ route('invoice.index') }}"><i class="fa fa-circle-o"></i>History </a></li>
         </ul>
       </li>
+      <li class="treeview" >
+        <a href="#"><i class="fa fa-lightbulb-o"></i> <span>Replace</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu" >
+          <li class="" ><a href="{{route('replace.create')}}"><i class="fa fa-circle-o"></i>Create</a></li>
+          <li class="" ><a  href="{{ route('replace.index') }}"><i class="fa fa-circle-o"></i>History </a></li>
+        </ul>
+      </li>
 
 
      

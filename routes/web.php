@@ -33,5 +33,6 @@ Route::group( ['middleware' => [ 'auth'] ], function () {
 
 	Route::get('/invoice/{invoice}/chalan', 'InvoiceController@chalan')->name('invoice.chalan');
 	Route::resource('invoice','InvoiceController');
+	Route::resource('replace','ReplaceController');
 
 });

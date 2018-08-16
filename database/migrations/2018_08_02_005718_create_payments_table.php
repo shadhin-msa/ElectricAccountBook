@@ -18,8 +18,8 @@ class CreatePaymentsTable extends Migration
             $table->decimal('amount');
             $table->string('remark');
             $table->string('reason');
-            $table->integer('customer_id')->unsigned()->nullable();
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('customer_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

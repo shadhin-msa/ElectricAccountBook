@@ -19,7 +19,7 @@
 			'searching'   : false,
 			'ordering'    : false,
 			'info'        : true,
-			'autoWidth'   : true
+			'autoWidth'   : false
 		})
 	})
 </script>
@@ -50,7 +50,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Invoice
+			Replace
 			<small><!-- sub title --></small>
 		</h1>
 		<ol class="breadcrumb">
@@ -68,65 +68,60 @@
 				<div class="box box-primary">
 					@include('includes.messages')
 					<div class="box-header with-border">
-						<h3 class="box-title">All Invoices</h3>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body">
-						<table id="example1" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th>I.No</th>
-									<th>Date</th>
-									<th>Customer Name</th>
-									<th>Total Bill</th>
-									<th>Cash Deposit</th>
-									<th>Balance</th>
-									<th>Pre.Due</th>
-									<th>New.Due</th>
-									<th> -- </th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach ($invoices as $invoice)
-								<tr>
-									<td>{{$invoice->id}}</td>
-									<td>{{$invoice->created_at}}</td>
-									<td>{{$invoice->customer->name}}</td>
-									<td>{{$invoice->total_bill}}</td>
-									<td>{{(float)$invoice->payment->amount}}</td>
-									<td>{{(float)$invoice->payment->amount - $invoice->total_bill}}</td>	
-									<td>{{$invoice->previous_due }} </td>
-									<td>{{$invoice->current_due }} </td>
-									<td><a href="{{ route('invoice.show',$invoice->id) }} ">Cash Memo</a> / <a href="{{ route('invoice.chalan',$invoice->id) }} ">Chalan</a></td>							
+						<h3 class="box-title">
 
-								</tr>
-								@endforeach
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>Invoice No</th>
-									<th>Date</th>
-									<th>Customer Name</th>
-									<th>Total Bill</th>
-									<th>Cash Deposit</th>
-									<th>Balance</th>
-									<th>Pre.Due</th>
-									<th>New.Due</th>
-								</tr>
-							</tfoot>
-						</table>
+							<h3 class="box-title">All Replaces</h3>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<table id="example1" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Replace No</th>
+										<th>Date</th>
+										<th>Customer Name</th>
+										<th>Total Bill</th>
+										<th>Cash Returned</th>
+										<th>Balance</th>
+										<th> -- </th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach ($replaces as $replace)
+									<tr>
+										<td>{{$replace->id}}</td>
+										<td>{{$replace->created_at}}</td>
+										<td>{{$replace->customer->name}}</td>
+										<td>{{$replace->total_bill}}</td>
+										<td>{{ -1*(float)$replace->payment->amount}}</td>
+										<td>{{-1*(float)$replace->payment->amount + $replace->total_bill}}</td>	
+										<td><a href="{{ route('replace.show',$replace->id) }} ">Cash Memo</a> </td>							
+									</tr>
+									@endforeach
+								</tbody>
+								<tfoot>
+									<tr>
+										<th>Replace No</th>
+										<th>Date</th>
+										<th>Customer Name</th>
+										<th>Total Bill</th>
+										<th>Cash Returned</th>
+										<th>Balance</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						<!-- /.box-body -->
 					</div>
-					<!-- /.box-body -->
+					<!-- /.box -->
+
 				</div>
-				<!-- /.box -->
-
+				<!-- /.col-->
 			</div>
-			<!-- /.col-->
-		</div>
-		<!-- ./row -->
-	</section>
-	<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+			<!-- ./row -->
+		</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
 
-@endsection
+	@endsection

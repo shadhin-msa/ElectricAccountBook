@@ -47,19 +47,28 @@ class Product extends Model
 	public function invoices(){
 		return $this->belongsToMany('App\Models\Invoice','invoice_products')->withPivot('price','quantity','total');
 	}
+	public function replaces(){
+		return $this->belongsToMany('App\Models\Replace','replace_products')->withPivot('price','quantity','total');
+	}
 
 	public function calculateStock(){
-		// $a =[];
-		// foreach($this->invoices as $invoice)
-		// 	{ 	
-		// 		$a[] = $invoice->pivot->quantity;
-		// 	}
 		
+		$stock = Stock::where('product_id', $this->id)->sum('quantity');
 		$sell = $this->invoices()->sum('quantity');
-		$total_stock = Stock::where('product_id', $this->id)->sum('quantity');
-		$current_stock = $total_stock - $sell;
+		$replace = $this->replaces()->sum('quantity');
+		$current_stock = $stock - $sell + $replace;
+		// dd("stock ".$stock."/ sell ".$sell." / replace".$replace." / current ".$current_stock);
 		$this->stock = $current_stock;
 		$this->save();
 		return $current_stock;
+	}
+
+	public function getStockAttribute($value){
+		$stock = $value;
+		if($stock < 1){
+			return $this->calculateStock();
+		}else{
+			return $stock;
+		}
 	}
 }

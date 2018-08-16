@@ -18,51 +18,51 @@
 
 	$products_detail = array();
 	foreach ($products as $product) {
-		$products_detail[$product->id] = ['stock'=>$product->stock, 'price'=>$product->price ]; // should be customer->due
+		$products_detail[$product->id] = [ 'price'=>$product->price ]; // should be customer->due
 	}
 
 
 	@endphp
 	
-	var Invoice = {
+	var Replace = {
 		symbol: '$',
 		dueArray: @php echo json_encode($customers_due) @endphp,
 		pArray: @php echo json_encode($products_detail) @endphp,
 
 		init: function(){
-			Invoice.update();
-			Invoice.uiEvent();
+			Replace.update();
+			Replace.uiEvent();
 		},
 		uiEvent: function(){
 
 			$('#items').on('click','.delete', function(e){
 				e.preventDefault();
 				$(this).parent().parent().remove();
-				Invoice.update();
+				Replace.update();
 			});
 
 			$('#items').on('change','.price,.quantity,.selectProduct', function(e){
-				Invoice.update();
+				Replace.update();
 			});
 
 			$('#commission').on('change', function(e){
-				Invoice.update();
+				Replace.update();
 			});
 
 			$('#payment_input').on('change', function(e){
-				Invoice.update();
+				Replace.update();
 			});
 
 			$('#selectCustomer').on('change', function(e){
 				var id = $('#selectCustomer').val();
-				Invoice.updateDue(id);
+				Replace.updateDue(id);
 			});
 
 
 			$('#addItemButton').on('click', function(e){
 				e.preventDefault();
-				Invoice.addItem();
-				Invoice.update();
+				Replace.addItem();
+				Replace.update();
 			});
 		},
 		update: function(){
@@ -81,15 +81,13 @@
 				if(p_id != null){
 
 
-					
 					var price = parseFloat($('.price',this).val());
 					var old_p_id = parseInt($('.id',this).val());
 
 					if(isNaN(price) || p_id != old_p_id ){
-						price = Invoice.pArray[p_id]['price'];
+						price = Replace.pArray[p_id]['price'];
 					}
 
-					var stock = Invoice.pArray[p_id]['stock'];
 
 
 					var qta = parseInt($('.quantity',this).val());
@@ -97,15 +95,11 @@
 						qta = 1
 					}
 
-					if(qta > stock){
-						qta = stock;
-						alert('stock limit crossed');
-					}
 
 					// var tax_rate = parseInt($('.tax_rate option:selected',this).val());
 
 					var total_price = price*qta;
-					subtotal += total_price;
+					subtotal -= total_price;
 
 					// if(tax_rate>0){
 					// 	var tax = (total_price*tax_rate)/100;
@@ -118,8 +112,7 @@
 					$('.id',this).html(p_id);
 					$('.quantity',this).val(qta);
 					$('.price',this).val(parseFloat(price).toFixed(2));
-					$('.stock',this).val(parseInt(stock));
-					$('.total-price',this).html(Invoice.symbol + parseFloat(total_price).toFixed(2));
+					$('.total-price',this).html(Replace.symbol + parseFloat(total_price).toFixed(2));
 				}
 			});
 
@@ -143,15 +136,15 @@
 			}
 
 			total_commission = (subtotal* commission)/100;
-			total_bill = subtotal - total_commission;
-			grand_total =parseFloat(total_bill)+parseFloat(previous_due);
-			current_due = grand_total - payment;
+			total_bill =  subtotal - total_commission;
+			grand_total =parseFloat(previous_due) + parseFloat(total_bill);
+			current_due = grand_total + parseFloat(payment);
 			
 
 
 			$('#subtotal').val(parseFloat(subtotal).toFixed(2));
 
-			$('#total_commission').val(parseFloat(total_commission).toFixed(2));
+			$('#total_commission').val(parseFloat(-1*total_commission).toFixed(2));
 
 
 			$('#total_bill').val(parseFloat(total_bill).toFixed(2));
@@ -160,11 +153,11 @@
 			$('#current_due').val(parseFloat(current_due).toFixed(2));
 
 
-			Invoice.displayDelete();
+			Replace.displayDelete();
 
 		},
 		addItem: function(){
-			var html = '<tr class="item"><td><a href="#" class="delete">x</a></td><td class="id"></td><td><select id="" name="product_id[]" class="form-control selectProduct"><option disabled selected value> -- select an option -- </option>@foreach ($products as $product)<option value="{{$product->id}}">{{$product->name}}</option>@endforeach</select></td><td><input type="number" class="quantity" name="quantity[]" step="1" value="1"></td><td><input disabled="disabled" type="number" class="stock" step="1" value=""></td><td><input type="number" class="price" name="price[]" step="0.01" value=""></td><td class="total-price"></td></tr>';
+			var html = '<tr class="item"><td><a href="#" class="delete">x</a></td><td class="id"></td><td><select id="" name="product_id[]" class="form-control selectProduct"><option disabled selected value> -- select an option -- </option>@foreach ($products as $product)<option value="{{$product->id}}">{{$product->name}}</option>@endforeach</select></td><td><input type="number" class="quantity" name="quantity[]" step="1" value="1"></td><td><input type="number" class="price" name="price[]" step="0.01" value=""></td><td class="total-price"></td></tr>';
 			$('#items').append(html);
 		},
 		displayDelete: function(){
@@ -184,18 +177,18 @@
 			}
 		},
 		updateDue: function(id){
-			$('#previous_due1').html(Invoice.symbol+' ' + parseFloat(Invoice.dueArray[id]).toFixed(2));
-			$('#previous_due2').val(parseFloat(Invoice.dueArray[id]).toFixed(2));
-			Invoice.update();
+			$('#previous_due1').html(Replace.symbol+' ' + parseFloat(Replace.dueArray[id]).toFixed(2));
+			$('#previous_due2').val(parseFloat(Replace.dueArray[id]).toFixed(2));
+			Replace.update();
 		},
 		updateProductDetail: function(id){
-			$('#previous_due1').html(Invoice.symbol+' ' + parseFloat(Invoice.dueArray[id]).toFixed(2));
+			$('#previous_due1').html(Replace.symbol+' ' + parseFloat(Replace.dueArray[id]).toFixed(2));
 		}
 	};
 	$(document).ready(function(){
 
 	// launc
-	Invoice.init();
+	Replace.init();
 })
 </script>
 
@@ -243,7 +236,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Invoice
+			Replace
 			<small><!-- sub title --></small>
 		</h1>
 		<ol class="breadcrumb">
@@ -263,21 +256,21 @@
 					<div class="box-header with-border">
 						
 						<h3 class="box-title">
-						Create New invoice </h3>
+						Create New replace </h3>
 					</div>
-					<div class="box-body" id="invoice-content">
+					<div class="box-body" id="replace-content">
 						<!-- general form elements -->
 
 						<div class="container">
-							<form method="post" action="{{ route('invoice.store') }}" >
+							<form method="post" action="{{ route('replace.store') }}" >
 								{{ csrf_field() }}
 
 								<div class="col-lg-6">
-									<h2>Invoice #</h2>
+									<h2>Replace #</h2>
 
 
 									<div class="form-group">
-										<label>Invoice Date : </label> {{ date("d/M/Y - h:i:s a")}}
+										<label>Replace Date : </label> {{ date("d/M/Y - h:i:s a")}}
 									</div>
 									<div class="form-group">
 										<label>Customer : </label>
@@ -301,7 +294,6 @@
 											<th>No</th>
 											<th>Product Name</th>
 											<th>Quantity</th>
-											<th>Stock</th>
 											<th>Price</th>
 											<th>Total price</th>
 										</tr>
@@ -320,7 +312,6 @@
 
 											</td>
 											<td><input type="number" class="quantity" name="quantity[]" min="0" step="1" value=""></td>
-											<td><input disabled="disabled" type="number" class="stock" min="0" step="1" value=""></td>
 											<td><input type="number" class="price" name="price[]" min="0.00" step="0.01" value=""></td>
 
 											<td class="total-price"></td>
@@ -328,7 +319,7 @@
 									</tbody>
 								</table>
 								<a href="" id="addItemButton">+</a>
-								<table class="invoice-totals">
+								<table class="replace-totals">
 									<tbody>
 										<tr>
 											<th>Subtotal :</th>
@@ -357,7 +348,7 @@
 										</tr>
 
 										<tr>
-											<th>Cash Deposit</th>
+											<th>Cash Refunded</th>
 											<td><input id="payment_input" type="number" min="0"  name="payment" value='{{old("payment")}}' /></td>
 										</tr>
 
@@ -367,23 +358,18 @@
 										</tr>
 									</tbody>
 								</table>
-								<table class="invoice-totals" style="margin-left: 50%;">
+								<table class="replace-totals" style="margin-left: 50%;">
 									<tbody>
 										<tr>
 											<td>
-												<input type="submit" name="submit" class="btn btn-primary" value="Confirm Sale"></td colspan="2">
+												<input type="submit" name="submit" class="btn btn-primary" value="Confirm Replace" colspan="2">
 											</td>
 										</tr>
 									</tbody>
 								</table>
 							</form>
 						</div>
-						<div class="bottom">
-							<h1><span contenteditable>Additional Notes</span></h1>
-							<div contenteditable>
-								<p>Any notes?</p>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>

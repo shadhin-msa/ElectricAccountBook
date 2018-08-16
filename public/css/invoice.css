@@ -8,7 +8,7 @@ body {
   background-color: #d7d7d7;
 }
 
-#invoice-content * {
+#invoice-content *, #replace-content * {
   box-sizing:border-box;
 }
 
@@ -54,19 +54,19 @@ input[type=text], input[type=number], input[type=date], select {
   text-align: right;
   font-weight: 600;
 }
-.invoice-totals {
+.invoice-totals ,.replace-totals {
   width: 50%;
   float: right;
 }
-.invoice-totals th {
+.invoice-totals th ,.replace-totals th {
   font-weight: 300;
 }
-.invoice-totals th, .invoice-totals td {
+.invoice-totals th, .invoice-totals td ,.replace-totals th, .replace-totals td {
   text-align: right;
   padding: 5px;
   border-bottom: 1px solid #d7d7d7;
 }
-.invoice-totals .tax-container td {
+.invoice-totals .tax-container td ,.replace-totals .tax-container td {
   border-bottom: none;
   padding: 0;
 }
@@ -81,4 +81,29 @@ input[type=text], input[type=number], input[type=date], select {
   text-align: right;
   padding: 5px;
   border-bottom: 1px solid #d7d7d7;
+}
+
+.class_image_header{
+  width: 100%;
+}
+
+#invoice_details table , #print_content table, #chalan_details table, #replace_details table{
+  margin-bottom:10px;
+}
+
+
+#invoice_show .only-print, #replace_show #chalan_details,#replace_show .only-print, #replace_show #chalan_details{
+  display: none;
+}
+
+
+#invoice_chalan .only-print, #invoice_chalan #invoice_details{
+  display: none;
+}
+
+#print_content .print-half-width{
+  /*display: none;*/
+  width:50% !important;
+  float: left;
+  
 }

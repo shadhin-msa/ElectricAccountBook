@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInvoicesTable extends Migration
+class CreateReplacesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('replaces', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id')->unsigned();
             $table->decimal('subtotal');
@@ -33,15 +33,15 @@ class CreateInvoicesTable extends Migration
         });
 
 
-        Schema::create('invoice_products', function (Blueprint $table) {
+        Schema::create('replace_products', function (Blueprint $table) {
             $table->increments('id');
             $table->decimal('price');
             $table->integer('quantity');
             $table->decimal('total');
-            $table->integer('product_id')->unsigned()->nullable();
-            $table->integer('invoice_id')->unsigned()->nullable();
+            $table->integer('product_id')->unsigned();
+            $table->integer('replace_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('replace_id')->references('id')->on('replaces');
             $table->timestamps();
         });
     }
@@ -53,7 +53,7 @@ class CreateInvoicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoice_products');
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('replace_products');
+        Schema::dropIfExists('replaces');
     }
 }
