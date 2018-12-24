@@ -42,8 +42,6 @@ class ReplaceController extends Controller
     {
         $this->validate($request,replace::rules($request->method()));
 
-        $payment_amount= -1* (float)$request->payment;
-
         $subtotal = 0;
         $array_products=[];
         //calculate all item total
@@ -54,7 +52,7 @@ class ReplaceController extends Controller
             $array_products[$i]['quantity'] = (int)$request->quantity[$i];
             $array_products[$i]['total'] = $array_products[$i]['price'] * $array_products[$i]['quantity'];
 
-            $subtotal -= $array_products[$i]['total'];
+            $subtotal += $array_products[$i]['total'];
         }
 
 
@@ -63,20 +61,28 @@ class ReplaceController extends Controller
         $replace= new Replace();
 
 
-        $replace->customer_id      =$request->customer_id;
-        $replace->subtotal         =$subtotal;
-        $replace->commission       =$request->commission;
-        $replace->total_commission = (abs($replace->subtotal)* $replace->commission)/100;
-        $replace->total_bill       =$replace->subtotal + $replace->total_commission;
-        $replace->previous_due     =$customer->PreviousDue;
-        $replace->grand_total      =$replace->total_bill + $replace->previous_due;
-        $replace->cash             =-1*$request->payment;
-        $replace->current_due      =$replace->grand_total - $replace->cash;
-        $replace->user_id          =$user->id;
+        $replace->customer_id        =$request->customer_id;
+        $replace->subtotal           =$subtotal;
+        $replace->commission         =$request->commission;
+        $replace->total_commission   = (abs($replace->subtotal)* $replace->commission)/100;
+        $replace->total_return_money =$replace->subtotal - $replace->total_commission;
+        $replace->previous_due       =$customer->PreviousDue;
+        $replace->current_due        =$replace->previous_due - $replace->total_return_money;
+        $replace->user_id            =$user->id;
 
-        $pament_reason = "Replace payment";
+        /*........add payment entry.............*/
 
-        $p= $user->payments()->create(['amount'=> $payment_amount, 'customer_id'=>$replace->customer_id, 'remark'=> '', 'reason'=> $pament_reason]);
+
+
+        $pament_reason = "Replace money deposit";
+        //adding prodct details in payment description 
+        $description = "";
+        $c = count($array_products);
+        for($i=0; $i < $c; $i++) {
+            $description .= Product::find($array_products[$i]['product_id'])->name."( x ". $array_products[$i]['quantity'].") ,";
+        }
+        $payment_amount = $replace->total_return_money;
+        $p= $user->payments()->create(['amount'=> $payment_amount, 'customer_id'=>$replace->customer_id, 'remark'=> 'Cash returned for replacing ['.$description.']', 'reason'=> $pament_reason]);
         
         $replace->payment_id = $p->id;
         $replace->save();

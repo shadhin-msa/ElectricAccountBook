@@ -49,10 +49,7 @@
 				Replace.update();
 			});
 
-			$('#payment_input').on('change', function(e){
-				Replace.update();
-			});
-
+			
 			$('#selectCustomer').on('change', function(e){
 				var id = $('#selectCustomer').val();
 				Replace.updateDue(id);
@@ -71,8 +68,6 @@
 			total_commission=0,
 			total_vill=0,
 			previous_due=0,
-			grand_total =0,
-			payment=0,
 			current_due=0;
 
 			$('#items tr').each(function(){
@@ -99,7 +94,7 @@
 					// var tax_rate = parseInt($('.tax_rate option:selected',this).val());
 
 					var total_price = price*qta;
-					subtotal -= total_price;
+					subtotal += total_price;
 
 					// if(tax_rate>0){
 					// 	var tax = (total_price*tax_rate)/100;
@@ -129,28 +124,30 @@
 				$('#previous_due2').val(previous_due);
 			}
 
-			payment = parseFloat($('#payment_input').val()).toFixed(2);
-			if(isNaN(payment)){
-				payment = 0;
-				$('#payment_input').val(payment);
-			}
+			
 
 			total_commission = (subtotal* commission)/100;
-			total_bill =  subtotal - total_commission;
-			grand_total =parseFloat(previous_due) + parseFloat(total_bill);
-			current_due = grand_total + parseFloat(payment);
+			total_return_money =  subtotal - total_commission;
+			current_due =  parseFloat(previous_due) - parseFloat(total_return_money);
+			 
 			
 
 
 			$('#subtotal').val(parseFloat(subtotal).toFixed(2));
 
-			$('#total_commission').val(parseFloat(-1*total_commission).toFixed(2));
+			$('#total_commission').val(parseFloat(total_commission).toFixed(2));
+				$tmp_title = parseFloat(subtotal).toFixed(2)+" X "+commission+"%";
+				$('#total_commission').prop('title', $tmp_title);
 
 
-			$('#total_bill').val(parseFloat(total_bill).toFixed(2));
+			$('#total_return_money').val(parseFloat(total_return_money).toFixed(2));
+				$tmp_title = parseFloat(subtotal).toFixed(2)+" - "+parseFloat(total_commission).toFixed(2);
+				$('#total_return_money').prop('title', $tmp_title);
 
-			$('#grand_total').val(parseFloat(grand_total).toFixed(2));
+			
 			$('#current_due').val(parseFloat(current_due).toFixed(2));
+				$tmp_title = parseFloat(previous_due)+" - "+parseFloat(total_return_money).toFixed(2)+" (Return money deposited)";
+				$('#current_due').prop('title', $tmp_title);
 
 
 			Replace.displayDelete();
@@ -331,25 +328,15 @@
 										</tr>
 										<tr>
 											<th>Commission Amount :</th>
-											<td ><input id="total_commission"  disabled="disabled" type="text" value="" /></td>
+											<td ><input id="total_commission"  disabled="disabled" type="text" value="" title="hi" /></td>
 										</tr>
 										<tr>
-											<th>Total bill :</th>
-											<td><input id="total_bill" disabled="disabled" type="text" name="" value=" 0.00" /></td>
+											<th title="Will be returned as deposit ">Total Return Money :</th>
+											<td><input id="total_return_money" disabled="disabled" type="text" name="" value=" 0.00" /></td>
 										</tr>
 										<tr>
 											<th>Previous due :</th>
 											<td><input id="previous_due2" disabled="disabled" type="text" name="" value=" 0.00" /></td>
-										</tr>
-
-										<tr>
-											<th>Grand Total</th>
-											<td><input id="grand_total" disabled="disabled" type="text" name="" value=" 0.00" /></td>
-										</tr>
-
-										<tr>
-											<th>Cash Refunded</th>
-											<td><input id="payment_input" type="number" min="0"  name="payment" value='{{old("payment")}}' /></td>
 										</tr>
 
 										<tr>

@@ -23,7 +23,7 @@ class Replace extends Model
 				return [
 					'customer_id'=> 'required|integer|exists:customers,id',
 					'commission'=> 'required|min:0|regex:/^\d*(\.\d{1,2})?$/',
-					'payment'=> 'required|min:0|regex:/^\d*(\.\d{1,2})?$/',
+					// 'payment'=> 'required|min:0|regex:/^\d*(\.\d{1,2})?$/',
 					'product_id' =>'required|array|min:1',
 					'product_id.*' =>'required|integer|exists:products,id|distinct',
 					'quantity' =>['required','array','min:1'],

@@ -80,9 +80,8 @@
 										<th>Replace No</th>
 										<th>Date</th>
 										<th>Customer Name</th>
-										<th>Total Bill</th>
-										<th>Cash Returned</th>
-										<th>Balance</th>
+										<th>Description</th>
+										<th>Total Return Money</th>
 										<th> -- </th>
 									</tr>
 								</thead>
@@ -92,9 +91,8 @@
 										<td>{{$replace->id}}</td>
 										<td>{{$replace->created_at}}</td>
 										<td>{{$replace->customer->name}}</td>
-										<td>{{$replace->total_bill}}</td>
-										<td>{{ -1*(float)$replace->payment->amount}}</td>
-										<td>{{-1*(float)$replace->payment->amount + $replace->total_bill}}</td>	
+										<td>{{$replace->payment->remark}}</td>
+										<td>{{$replace->total_return_money}}</td>
 										<td><a href="{{ route('replace.show',$replace->id) }} ">Cash Memo</a> </td>							
 									</tr>
 									@endforeach

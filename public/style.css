@@ -2,9 +2,9 @@
 
 
 /*!
- *   Ideahunter
+ *   EAB
  *   Author: Md. Shahinur Alam
- *   Website: https://www.linkedin.com/in/md-shahinur-alam-581bb5b2/
+ *   Website: https://www.linkedin.com/in/shadhin.msa
  */
 /*
  * Core: General Layout Style
@@ -145,7 +145,48 @@ form textarea{
     font-size: 12px;
 }
 
+/*................ Start flash message ...........................*/
 
+
+
+
+.popup-message{
+    position: fixed;
+    right: 64px; 
+    min-width: 325px; 
+    top: 51px; 
+    z-index: 100; 
+  }
+.alert.notification_item{
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  border: 0;
+  margin-bottom: 0;
+  -webkit-animation: custom_notification 5s ; /* Safari 4.0 - 8.0 */
+  animation: custom_notification 5s ;
+}
+
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+}
+@-webkit-keyframes custom_notification {
+  0%   {height: auto;padding: 15px;border: 1px;margin-bottom:20px; }
+  1%  {opacity: 1;}
+  90%  {opacity: 1;}
+  98% {opacity: 0;}
+  100%   {height: auto;padding: 15px;border: 1px;margin-bottom:20px; }
+}
+
+@keyframes custom_notification {
+  0%   {height: auto;padding: 15px;border: 1px;margin-bottom:20px; }
+  1%  {opacity: 1;}
+  90%  {opacity: 1;}
+  98% {opacity: 0;}
+  100% {height: auto;padding: 15px;border: 1px;margin-bottom:20px; }
+}
 
 @-webkit-keyframes fadeInRight {
   from {
@@ -175,35 +216,8 @@ form textarea{
   }
 }
 
-.fadeInRight {
-  -webkit-animation-name: fadeInRight;
-  animation-name: fadeInRight;
-}
 
-.alert.notification_item{
-  opacity: 0;
-  -webkit-animation: custom_notification 5s ; /* Safari 4.0 - 8.0 */
-  animation: custom_notification 5s ;
-}
-
-
-@-webkit-keyframes custom_notification {
-  0%   {display: inherit;}
-  1%  {opacity: 1;}
-  90%  {opacity: 1;}
-  98% {opacity: 0;}
-  100%   {display: inherit;}
-}
-
-@keyframes custom_notification {
-  0%   {display: inherit;}
-  1%  {opacity: 1;}
-  90%  {opacity: 1;}
-  98% {opacity: 0;}
-  100% {display: inherit;}
-}
-
-
+/*................ end flash message  ...........................*/
 
 .breadcrumb{
   display: none;
@@ -250,9 +264,16 @@ form textarea{
 
 
 
-
 /*.............. invoice Show ...............*/
 
 
+/*.............. bootstrap - datepicker ...............*/
 
+.input-daterange {
+  padding-top:30px;
+}
 
+.input-daterange > label {
+  position: absolute;
+  margin-top:-30px;
+}

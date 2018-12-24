@@ -29,10 +29,22 @@ Route::group( ['middleware' => [ 'auth'] ], function () {
 	Route::resource('customer','CustomerController');
 	Route::resource('area-manager','AreaManagerController');
 	Route::resource('stock','StockController');
+
 	Route::resource('payment','PaymentController');
+	Route::get('payment/create/{customer?}','PaymentController@create')->name('payment.create');
 
 	Route::get('/invoice/{invoice}/chalan', 'InvoiceController@chalan')->name('invoice.chalan');
 	Route::resource('invoice','InvoiceController');
 	Route::resource('replace','ReplaceController');
+	Route::get('report/due','ReportController@due')->name('report.due');
+	Route::get('report/sale','ReportController@sale')->name('report.sale');
+	Route::post('report/customer','ReportController@customer')->name('report.customer_post');
+	Route::get('report/customer','ReportController@customer_index')->name('report.customer');
+
+	Route::post('report/stock','ReportController@stock')->name('report.stock_post');
+	Route::get('report/stock','ReportController@stock_index')->name('report.stock');
+
+	Route::get('report/area','ReportController@area')->name('report.area');
+
 
 });

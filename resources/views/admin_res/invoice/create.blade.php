@@ -8,17 +8,17 @@
 @endsection
 
 @section('footer')
-
+ 
 <script type="text/javascript">
 	@php
 	$customers_due = array();
 	foreach ($customers as $customer) {
-		$customers_due[$customer->id] = $customer->previous_due; // should be customer->due
+		$customers_due[$customer->id] = $customer->previousDue; 
 	}
 
 	$products_detail = array();
 	foreach ($products as $product) {
-		$products_detail[$product->id] = ['stock'=>$product->stock, 'price'=>$product->price ]; // should be customer->due
+		$products_detail[$product->id] = ['stock'=>$product->stock, 'price'=>$product->price ]; 
 	}
 
 

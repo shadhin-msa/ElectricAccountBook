@@ -52,5 +52,10 @@ class Invoice extends Model
     {
     	return $this->belongsTo('App\Models\Payment');
     }
+
+    
+	public function user(){
+		return $this->belongsTo('App\User');
+	}
 }
 

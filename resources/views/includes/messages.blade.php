@@ -1,5 +1,24 @@
+<style type="text/css">
+	.popup-message{
+		position: fixed;
+		right: 64px; 
+		min-width: 325px; 
+		top: 51px; 
+		z-index: 100; 
+		display: block; 
+	}
 
-<div style="position: fixed; right: 64px; min-width: 325px; top: 51px; z-index: 100; /* display: none; */">
+	.flash-message{
+
+	}
+	.alert.notification_item{
+	  opacity: 0;
+	  -webkit-animation: custom_notification 5s ; /* Safari 4.0 - 8.0 */
+	  animation: custom_notification 5s ;
+	}
+</style>
+
+<div class="popup-message">
 
 	<div class="flash-message fadeInRight">
 		@foreach (['danger', 'warning', 'success', 'info'] as $msg)

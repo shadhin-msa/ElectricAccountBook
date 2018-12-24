@@ -70,7 +70,7 @@
 					@include('includes.messages')
 					<div class="box-header with-border">
 						<h3 class="box-title">
-						@isset ($area_manager)Update @else Add New @endisset  Stock</h3>
+						@isset($stock)Update @else Add New @endisset  Stock</h3>
 					</div>
 					<!-- /.box-header -->
 					<!-- form start -->

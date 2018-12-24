@@ -5,36 +5,22 @@
   <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
 @endsection
 
+
 @section('footer')
 
-<!-- bootstrap datepicker -->
-<script src="{{ asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-
-<!-- page script -->
 <script>
- //Date picker
-    $('#datepicker').datepicker({
-      autoclose: true
-    })
+var due_list = [];
+@foreach($customers as $customer)
+	due_list[{{$customer->id}}] = {{$customer->due}};
+@endforeach
+
+$('#selectCustomer').on('change',function(){
+	var selectedId = $('#selectCustomer').find(":selected").val();
+	$('#customer_due').val(due_list[selectedId]);
+});
+
 
 </script>
-@endsection
-
-@section('footer')
-
-<!-- CK Editor -->
-<!--
-<script src="{{ asset('admin/bower_components/ckeditor/ckeditor.js')}}"></script>
- <script>
-  $(function () {
-    // Replace the <textcustomer id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace('editor1')
-    //bootstrap WYSIHTML5 - text editor
-    $('.textcustomer').wysihtml5()
-  })
-</script>
--->
 @endsection
 
 @section("main-content")
@@ -83,11 +69,11 @@
 							<div class="col-lg-12">
 								<div class="form-group">
 									<label>Customer</label>
-									<select id="selectCustomer" required="required" name="customer_id" class="form-control">
+									<select id="selectCustomer"  required="required" name="customer_id" class="form-control">
 										<option disabled selected value> -- select an option -- </option>
 										@foreach ($customers as $customer)
 										<option 
-										@if(old('customer_id') == $customer->id || (isset($payment->customer_id) && $payment->customer_id == $customer->id  )){{'selected="selected"'}}@endif value="{{$customer->id}}"> {{$customer->name}}</option>
+										@if(old('customer_id') == $customer->id || (isset($payment->customer_id) && $payment->customer_id == $customer->id  ) || $customer_id == $customer->id ){{'selected="selected"'}}@endif value="{{$customer->id}}"> {{$customer->name}}</option>
 										@endforeach
 									</select>
 								</div>
@@ -95,7 +81,7 @@
 							<div class="col-lg-6">
 								<div class="form-group">
 									<label for="">Previous Due</label>
-									<input type="number" min="0.01" disabled="disabled" step="0.01"  class="form-control" value="{{$previous_due}}" placeholder="previous due">
+									<input id="customer_due" type="number" min="0.01" disabled="disabled" step="0.01"  class="form-control" value="" placeholder="previous due">
 								</div>
 							</div>
 

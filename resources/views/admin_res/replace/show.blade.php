@@ -175,35 +175,27 @@
 												</tbody>
 											</table>
 
-											<table width="247" border="1" align="right" cellpadding="2">
+											<table width="300" border="1" align="right" cellpadding="2">
 												<tbody>
 													<tr>
 														<td width="44%">Subtotal</td>
 														<td width="41%" class="td_currency">{{ $replace->subtotal}} </td>
 													</tr>
 													<tr>
-														<td>Commission () %</td>
-														<td class="td_currency">{{$replace->commission}} </td>
+														<td>Commission ({{$replace->commission}}) %</td>
+														<td class="td_currency">{{$replace->total_commission}} </td>
 													</tr>
 													<tr>
-														<td><span class="control-label">Total Bill</span></td>
-														<td class="td_currency">{{$replace->total_bill}} </td>
+														<td><span class="control-label">Total Return Money</span></td>
+														<td class="td_currency">{{$replace->total_return_money}} </td>
 													</tr>
 													<tr>
 														<td><span class="control-label">Previous Due</span></td>
 														<td class="td_currency">{{$replace->previous_due}} </td>
 													</tr>
 
-													<tr>
-														<td><span class="control-label">Grand Total</span></td>
-														<td class="td_currency">{{ $replace->grand_total}} </td>
-													</tr>
-													<tr>
-														<td><span class="control-label">Cash Returned</span></td>
-														<td class="td_currency">{{ -1*$replace->payment->amount}} </td>
-													</tr>
-													<tr>
-														<td>Due: </td>
+													<tr title="After return money deposited">
+														<td >Current Due: </td>
 														<td class="td_currency">{{ $replace->current_due}}</td>
 													</tr>
 												</tbody>

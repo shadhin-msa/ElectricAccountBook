@@ -51,12 +51,36 @@ class Customer extends Model
 		return $this->hasMany('App\Models\Payment');
 	}
 
-   public function getPreviousDueAttribute(){
-        $invoice_bills = $this->invoices()->sum('total_bill');
-        $replace_bills = $this->replaces()->sum('total_bill');
-        $all_payments = $this->payments()->sum('amount');
+	public function getPreviousDueAttribute(){
+	    $invoice_bills = $this->invoices()->sum('total_bill');
+	    $all_payments = $this->payments()->sum('amount');
 
-        return $invoice_bills - $all_payments+$replace_bills;
-   }
+
+	    return $invoice_bills - $all_payments;
+
+	    //return $invoice_bills - $all_payments - $replace_bills;
+	}
+
+	public function getTotalBillAttribute(){
+		return $this->invoices()->sum('total_bill');
+	}
+
+
+	public function getTotalDepositAttribute(){
+		return $this->payments()->sum('amount');
+	}
+
+	public function getTotalReplaceAttribute(){
+		return $this->replaces()->sum('total_return_money');
+	}
+
+	public function getBalanceAttribute(){
+		return ($this->getPreviousDueAttribute() * -1);
+	}
+	public function getDueAttribute(){
+		return $this->getPreviousDueAttribute();
+	}
+
+
 
 }

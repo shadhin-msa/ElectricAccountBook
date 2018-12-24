@@ -17,7 +17,7 @@
 		$('#example2').DataTable({
 			'paging'      : true,
 			'lengthChange': false,
-			'searching'   : false,
+			'searching'   : true,
 			'ordering'    : true,
 			'info'        : true,
 			'autoWidth'   : false
@@ -28,19 +28,6 @@
 
 @section('footer')
 
-<!-- CK Editor -->
-<!--
-<script src="{{ asset('admin/bower_components/ckeditor/ckeditor.js')}}"></script>
- <script>
-  $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace('editor1')
-    //bootstrap WYSIHTML5 - text editor
-    $('.textarea').wysihtml5()
-  })
-</script>
--->
 @endsection
 
 @section("main-content")
@@ -51,7 +38,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Payments
+			Delar
 			<small><!-- sub title --></small>
 		</h1>
 		<ol class="breadcrumb">
@@ -65,53 +52,61 @@
 	<section class="content">
 		<div class="row">
 			<div class="col-md-12">
-				<!-- general form elements -->
-				<div class="box box-primary">
-					@include('includes.messages')
-					
+				
+			<!-- /.box-primary -->
+			<!-- /.box -->
+
+			<div class="box">
 				<div class="box-header">
 
-					<h3 class="box-title">All Payments</h3>
+					<h3 class="box-title">All Dues</h3>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
 					<table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
+								<th>Customer</th>
+								<th>Area</th>
+								<th>Address</th>
+								<th>Mobile</th>
+								<th>Total Bill</th>
+								<th>Total Paied</th>
+								<th>Total Replace</th>
+								<th>Due</th>
+
 								<th></th>
-								<th>Date</th>
-								<th>Id</th>
-								<th>Customer </th>
-								<th>Reason</th>
-								<th>Remark</th>
-								<th>By</th>
-								<th>Amount</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($payments as $payment)
+							@foreach($customers as $customer)
 							<tr>
-								<td>{{$loop->index+1}}</td>
-								<td>{{$payment->created_at}}</td>
-								<td>{{$payment->id}}</td>
-								<td>{{$payment->customer->name}}</td>
-								<td>{{$payment->reason}}</td>	
-								<td>{{$payment->remark}}</td>	
-								<td>{{$payment->user->name}}</t>
-								<td>${{$payment->amount}}</td>	
+								<td>{{$customer->name}}</td>
+								<td>{{$customer->area->name}}</td>	
+								<td>{{$customer->address}}</td>
+								<td>{{$customer->phone}}</td>
+								<td>{{$customer->totalBill}}</td>										
+								<td>{{$customer->totalDeposit}}</td>										
+								<td>{{$customer->totalReplace}}</td>										
+								<td>{{$customer->due}}</td>										
+
+								<td><a href="{{route('payment.create',$customer)}}" class="text-info"> Deposit </a></td>
+								
 							</tr>
 							@endforeach
 						</tbody>
 						<tfoot>
 							<tr>
+								<th>Customer</th>
+								<th>Area</th>
+								<th>Address</th>
+								<th>Mobile</th>
+								<th>Total Bill</th>
+								<th>Total Paied</th>
+								<th>Total Replace</th>
+								<th>Due</th>
+
 								<th></th>
-								<th>Date</th>
-								<th>Id</th>
-								<th>Customer </th>
-								<th>Reason</th>
-								<th>Remark</th>
-								<th>By</th>
-								<th>Amount</th>
 							</tr>
 						</tfoot>
 					</table>

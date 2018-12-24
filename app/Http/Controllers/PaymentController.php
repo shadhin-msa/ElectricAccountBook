@@ -17,7 +17,7 @@ class PaymentController extends Controller
     public function index()
     {
         
-        $payments = Payment::all();
+        $payments = Payment::orderBy("id",'desc')->get();
         return view('admin_res.payment.index',compact('payments'));
     }
 
@@ -26,11 +26,15 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Customer $customer = NULL)
     {
+        $customer_id = null;
+        if(!is_null($customer)){
+            $customer_id = $customer->id;
+        }
         $customers = Customer::all();
         $previous_due = 0;
-        return view('admin_res.payment.create',compact('customers','previous_due'));
+        return view('admin_res.payment.create',compact('customers','previous_due','customer_id'));
     }
 
     /**

@@ -19,10 +19,8 @@ class CreateReplacesTable extends Migration
             $table->decimal('subtotal');
             $table->decimal('commission');
             $table->decimal('total_commission');
-            $table->decimal('total_bill');
+            $table->decimal('total_return_money');
             $table->decimal('previous_due');
-            $table->decimal('grand_total');
-            $table->decimal('cash');
             $table->decimal('current_due');
             $table->integer('user_id')->unsigned();
             $table->integer('payment_id')->unsigned();

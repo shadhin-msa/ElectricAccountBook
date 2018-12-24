@@ -57,9 +57,22 @@
       <li class="" ><a  href="{{ route('area.index') }}"><i class="fa fa-circle-o"></i>Area </a></li>
       <li class="" ><a  href="{{ route('customer.index') }}"><i class="fa fa-circle-o"></i>Customers </a></li>
       <li class="" ><a  href="{{ route('delar.index') }}"><i class="fa fa-circle-o"></i>Delars </a></li>
-      
-      <li class="" ><a  href="{{ route('payment.index') }}"><i class="fa fa-circle-o"></i>Payment </a></li>
       <li class="" ><a  href="{{ route('stock.index') }}"><i class="fa fa-circle-o"></i>Stock </a></li>
+      
+      <li class="treeview" >
+        <a href="#"><i class="fa fa-lightbulb-o"></i> <span>Payment</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu" >
+          <li class="" ><a href="{{route('payment.create')}}"><i class="fa fa-circle-o"></i>Create</a></li>
+          <li class="" ><a  href="{{ route('payment.index') }}"><i class="fa fa-circle-o"></i>History </a></li>
+        </ul>
+      </li>
+
+
+
       <li class="treeview" >
         <a href="#"><i class="fa fa-lightbulb-o"></i> <span>Invoice</span>
           <span class="pull-right-container">
@@ -82,6 +95,22 @@
           <li class="" ><a  href="{{ route('replace.index') }}"><i class="fa fa-circle-o"></i>History </a></li>
         </ul>
       </li>
+
+      <li class="treeview" >
+        <a href="#"><i class="fa fa-lightbulb-o"></i> <span>Reports</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu" >
+          <li class="" ><a  href="{{route('report.due')}}"><i class="fa fa-circle-o"></i>Due</a></li>
+          <li class="" ><a  href="{{route('report.sale')}}"><i class="fa fa-circle-o"></i>Sales</a></li>
+          <li class="" ><a  href="{{route('report.customer')}}"><i class="fa fa-circle-o"></i>Customer</a></li>
+          <li class="" ><a  href="{{route('report.stock')}}"><i class="fa fa-circle-o"></i>Stock</a></li>
+          <li class="" ><a  href="{{route('report.area')}}"><i class="fa fa-circle-o"></i>Area</a></li>
+        </ul>
+      </li>
+
 
 
      

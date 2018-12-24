@@ -40,7 +40,7 @@ class Product extends Model
 		}
 	}
 
-
+	
 	public function category(){
 		return $this->belongsTo('App\Models\Category','categoryId');
 	}
@@ -49,6 +49,10 @@ class Product extends Model
 	}
 	public function replaces(){
 		return $this->belongsToMany('App\Models\Replace','replace_products')->withPivot('price','quantity','total');
+	}
+
+	public function stocks(){
+		return $this->hasMany('App\Models\Stock');
 	}
 
 	public function calculateStock(){

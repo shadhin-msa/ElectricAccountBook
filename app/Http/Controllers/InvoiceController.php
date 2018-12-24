@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
